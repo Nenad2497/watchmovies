@@ -1,0 +1,27 @@
+{% extends 'core.html' %}
+
+{% block content %}
+<h1 class="pt-4 is-4  text-center fw-bold title is-size-3 fw-bold mt-6 ">Let's Watch Movies </h1>
+<h5 class="text-whitey text-center subtitle mb-6"> <small>username: </small><strong>{{ user.username }}</strong></h5>
+{% for post in object_list %}   
+
+<div class="box py-5">
+  
+    <small class="is-size-6"><small>By</small> :    <strong>{{ post.author.first_name }}  {{ post.author.last_name }}</strong></small>
+    <h1 class="py-2"> <strong class="is-size-4 ">{{ post.title }}</strong> </h1>
+    <p class="is-size-6"> <small>NOTE : </small>  {{ post.body }}</p>
+    <small class="mr-2"> Trailer : <a class="linktitle" href=" {{ post.trailer_link }} ">{{ post.trailer_link }}</a></small> <br>
+    <small>Post on : {{ post.date_added }}</small> <br>
+  
+
+    <div class="icons">
+        {% if user.id == post.author.id %}
+                <a href="{% url 'update' post.pk %}" class="" ><i class="fas fa-pen-square text-success"></i></a>
+                <a href="{% url 'delete' post.pk %}" class="ml-1" >  <i class="fas fa-trash-alt text-secondary"></i></a>
+         {% endif %}
+    </div>
+ 
+</div>
+{% endfor %}
+<a  href="{% url 'add_post' %}"><i class="fas plusLink fa-plus-circle fixed-bottom py-4 plus"></i></a>
+{% endblock %}

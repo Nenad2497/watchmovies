@@ -1,0 +1,26 @@
+{% extends 'core.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<h1 class="mt-5 mb-3 title text-center is-size-3">Delete Movie ?</h1>  
+ <h1 class="mt-2 text-center sub-title is-size-4"> {{ post.title }}</h1>
+
+<div class="container">
+    <form method="POST" class="form-group mt-4">
+        <div class="box">
+            {% csrf_token %}
+           
+            <strong class="ml-2">Are you sure ?!</strong>
+            <button class="btn btn-danger  ml-2">DELETE</button>
+            <a class="btn btn-primary ml-1 " href="{% url 'home'%}">go back  </a>
+
+        </div>
+    </form>
+
+</div>
+{% else %}
+    <h1 class="text-center">You need to login to see this page</h1>
+{% endif %}
+{% endif %}
+{% endblock %}

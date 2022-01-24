@@ -1,0 +1,43 @@
+{% extends 'core.html' %}
+
+{% block content %}
+
+<h1 class="pt-4 is-4  text-center fw-bold title is-size-3 mt-6 w-100">Register</h1>    
+
+
+<div class="container">
+    <form method="POST" class="form-group w-50 m-auto">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" placeholder="Enter Title" id="author" value="" name="username" class="form-control "> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">First name</label>
+            <input type="text" placeholder="Enter Title" id="author" value="" name="first_name" class="form-control "> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Last name</label>
+            <input type="text" placeholder="Enter Title" id="author" value="" name="last_name" class="form-control "> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" placeholder="Enter Title" id="author" value="" name="email" class="form-control "> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" placeholder="Enter Title" id="author" value="" name="password1" class="form-control "> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="password" placeholder="Enter Title" id="author" value="" name="password2" class="form-control "> 
+        </div>
+        <button type="submit" class="btn btn-success is-uppercase mt-6">Register</button>
+        <a class="btn btn-primary is-uppercase ml-5 mt-6" href="{% url 'home'%}">back </a>
+     
+     
+    
+    </form>
+</div>
+{% endblock %}
+fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2')

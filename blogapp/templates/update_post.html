@@ -1,0 +1,44 @@
+{% extends 'core.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+<h1  class="title text-center py-2">Update Movie</h1>    
+<div class="container">
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="hidden" placeholder="Enter Title"  value="" id="author" name="author" class="form-control "> 
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" placeholder="Enter Title"  value="{{ post.title }}" name="title" class="form-control "> 
+        </div>
+        <div class="mb-5">
+          <label  class="form-label">Link</label>
+          <input type="text" placeholder="Enter Title"  value="{{ post.trailer_link }}" name="trailer_link" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label  class="form-label">body</label>
+          <input name="body" placeholder="Text" value="{{ post.body }}" name="body" class="form-control">
+        </div>
+    
+          <button type="submit" class="btn btn-success">Update</button>
+          <a class="btn btn-primary " href="{% url 'home'%}">back  </a>
+        
+    </form>
+  
+</div>
+<script>
+  var name = "{{ user.id }}";
+  document.getElementById("author").value = name;
+</script>
+
+{% else %}
+
+    <h1 class="is-size-5 text-center py-5">Shame on you ! </h1>
+    <h1 class="text-center">Go to login page !</h1>
+{% endif %}
+{% endif %}
+{% endblock %}

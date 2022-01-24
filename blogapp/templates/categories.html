@@ -1,0 +1,19 @@
+{% extends 'core.html' %}
+
+{% block content %}
+
+{% for post in  category_posts  %}
+<div class="box">
+    category : {{ post.category }}
+    <h1> <small >Title : </small>  <strong class="is-size-5">{{ post.title }}</strong> </h1>
+    <p class="is-size-6"> <small>opis : </small>  {{ post.body }}</p>
+    <small class="is-size-6"><small>By</small> :{{ post.author.first_name }}  {{ post.author.last_name }}</small>
+    <br></br>
+{% if user.is_authenticated %}
+<a class="btn btn-primary " href="{% url 'home'%}">back  </a>
+<a href="{% url 'update' post.pk %}" class="btn btn-success mx-2">Edit</a>
+<a href="{% url 'delete' post.pk %}"  class="btn btn-danger ">Delete</a>
+{% endif %}
+</div>
+    {% endfor %}
+{% endblock content %}
